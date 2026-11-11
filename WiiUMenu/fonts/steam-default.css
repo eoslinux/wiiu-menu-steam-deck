@@ -1,0 +1,4 @@
+/* Use Steam's own Motiva Sans instead of the bundled rounded font */
+:root {
+  --wiiu-font: "Motiva Sans", Helvetica, sans-serif;
+}

@@ -1,0 +1,41 @@
+/* ==========================================================================
+   Square channel tiles (experimental)
+   --------------------------------------------------------------------------
+   Re-flows Steam's virtualised carousel into a row of square Wii U channels.
+   Steam changes its carousel internals from time to time; if this option
+   looks wrong after a client update, switch back to "Wii U Cards".
+   ========================================================================== */
+
+.gamepadhomerecentgames_RecentGamesInnerContainer_282X0 .ReactVirtualized__Grid__innerScrollContainer {
+  display: flex !important;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.gamepadhomerecentgames_RecentGamesInnerContainer_282X0 .ReactVirtualized__Grid__innerScrollContainer > div {
+  position: relative !important;
+  left: unset !important;
+  top: unset !important;
+  flex: 0 0 168px !important;
+  width: 168px !important;
+  min-width: 168px !important;
+  max-width: 168px !important;
+  height: 168px !important;
+  margin: 0 !important;
+}
+
+.gamepadhomerecentgames_RecentGamesInnerContainer_282X0 .ReactVirtualized__Grid__innerScrollContainer > div .LibraryItemBox,
+.gamepadhomerecentgames_RecentGamesInnerContainer_282X0 .ReactVirtualized__Grid__innerScrollContainer > div .libraryassetimage_GreyBackground_2E7G8,
+.gamepadhomerecentgames_RecentGamesInnerContainer_282X0 .ReactVirtualized__Grid__innerScrollContainer > div img.libraryassetimage_Image_24_Au {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.gamepadhomerecentgames_RecentGamesInnerContainer_282X0 .ReactVirtualized__Grid__innerScrollContainer > div img.libraryassetimage_Image_24_Au {
+  object-fit: cover !important;
+}
+
+/* Keep the label above the focused square */
+.basicgamecarousel_CarouselGameLabelWrapper_ZkD6W {
+  margin-bottom: 4px;
+}

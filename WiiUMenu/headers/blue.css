@@ -1,0 +1,15 @@
+/* Solid Wii U blue top bar */
+:root {
+  --wiiu-header-bg: linear-gradient(180deg, rgba(0, 162, 232, 0.94) 0%, rgba(0, 121, 193, 0.94) 100%);
+  --wiiu-header-ink: #ffffff;
+  --wiiu-tab-bg: rgba(255, 255, 255, 0.22);
+  --wiiu-tab-bg-selected: rgba(255, 255, 255, 0.95);
+}
+
+.header_Header_1E_SL:not(.header_InQuickAccess_2mRo5) {
+  border-bottom-color: rgba(53, 200, 240, 0.9) !important;
+}
+
+.header_Header_1E_SL:not(.header_InQuickAccess_2mRo5)::before {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0)) !important;
+}

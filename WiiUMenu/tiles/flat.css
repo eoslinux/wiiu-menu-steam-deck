@@ -1,0 +1,20 @@
+/* Flat cards: smaller radius, no raised frame */
+:root {
+  --wiiu-tile-radius: 6px;
+}
+
+.gamepadhomerecentgames_RecentGamesInnerContainer_282X0 .LibraryItemBox {
+  border-width: 1px !important;
+  box-shadow:
+    0 4px 12px rgba(70, 110, 140, 0.16),
+    inset 0 1px 0 #ffffff !important;
+}
+
+.gamepadhomerecentgames_RecentGamesInnerContainer_282X0 .LibraryItemBox.gpfocus,
+.gamepadhomerecentgames_RecentGamesInnerContainer_282X0 .LibraryItemBox:focus,
+.gamepadhomerecentgames_RecentGamesInnerContainer_282X0 .gpfocus .LibraryItemBox {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 0 0 2px var(--wiiu-accent),
+    0 8px 20px rgba(70, 110, 140, 0.24) !important;
+}

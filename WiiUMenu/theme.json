@@ -1,0 +1,118 @@
+{
+  "name": "WiiUMenu",
+  "display_name": "Wii U Menu",
+  "author": "Arseniy",
+  "version": "v1.0.0",
+  "description": "A soft, glossy Wii U inspired home menu for Steam Deck: pale blue background, rounded tiles, cyan focus glow, frosted top bar and a clean white footer.",
+  "target": "System-Wide",
+  "manifest_version": 9,
+  "inject": {
+    "shared.css": ["SP"]
+  },
+  "patches": {
+    "Tile Shape": {
+      "default": "Wii U Cards",
+      "type": "dropdown",
+      "values": {
+        "Wii U Cards": {},
+        "Square Tiles (experimental)": {
+          "tiles/square.css": ["SP"]
+        },
+        "Flat Cards": {
+          "tiles/flat.css": ["SP"]
+        }
+      }
+    },
+    "Background": {
+      "default": "Wii U Light",
+      "type": "dropdown",
+      "values": {
+        "Wii U Light": {},
+        "Wii U Blue": {
+          "backgrounds/wiiu-blue.css": ["SP"]
+        },
+        "Game Art": {
+          "backgrounds/game-art.css": ["SP"]
+        }
+      }
+    },
+    "Header": {
+      "default": "Frosted White",
+      "type": "dropdown",
+      "values": {
+        "Frosted White": {},
+        "Transparent": {
+          "headers/transparent.css": ["SP"]
+        },
+        "Wii U Blue": {
+          "headers/blue.css": ["SP"]
+        }
+      }
+    },
+    "Footer": {
+      "default": "Wii U Wave",
+      "type": "dropdown",
+      "values": {
+        "Wii U Wave": {},
+        "Flat White": {
+          "footers/flat.css": ["SP"]
+        }
+      }
+    },
+    "Logo": {
+      "default": "Wii U",
+      "type": "dropdown",
+      "values": {
+        "Wii U": {},
+        "Steam Deck": {
+          "--wiiu-logo-text": ["\"Steam Deck\"", "SP"]
+        },
+        "None": {
+          "--wiiu-logo-text": ["\"\"", "SP"],
+          "--wiiu-logo-display": ["none", "SP"]
+        }
+      }
+    },
+    "Watermark": {
+      "default": "Wii U",
+      "type": "dropdown",
+      "values": {
+        "Wii U": {},
+        "Steam Deck": {
+          "--wiiu-menu-title": ["\"Steam Deck\"", "SP"]
+        },
+        "Off": {
+          "--wiiu-menu-title": ["\"\"", "SP"],
+          "--wiiu-menu-title-display": ["none", "SP"]
+        }
+      }
+    },
+    "Font": {
+      "default": "Nunito Rounded",
+      "type": "dropdown",
+      "values": {
+        "Nunito Rounded": {},
+        "Steam Default": {
+          "fonts/steam-default.css": ["SP"]
+        }
+      }
+    },
+    "Accent Color": {
+      "default": "_",
+      "type": "none",
+      "values": {
+        "_": {}
+      },
+      "components": [
+        {
+          "name": "Accent color",
+          "type": "color-picker",
+          "on": "_",
+          "default": "#00a2e8",
+          "css_variable": "--wiiu-accent",
+          "tabs": ["SP"]
+        }
+      ]
+    }
+  }
+}

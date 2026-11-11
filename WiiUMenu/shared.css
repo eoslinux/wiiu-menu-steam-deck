@@ -1,0 +1,393 @@
+/* ==========================================================================
+   Wii U Menu — CSS Loader theme for Steam Deck
+   --------------------------------------------------------------------------
+   Everything is drawn with CSS. No Nintendo artwork is bundled.
+   Fan-made theme, not affiliated with Nintendo or Valve.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Bundled rounded font (Nunito, SIL OFL 1.1 — see fonts/OFL.txt)
+   -------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: "WiiU Rounded";
+  src: url("/themes_custom/WiiUMenu/fonts/Nunito-Cyrillic.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+  font-family: "WiiU Rounded";
+  src: url("/themes_custom/WiiUMenu/fonts/Nunito-Latin.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+    U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+
+/* --------------------------------------------------------------------------
+   2. Design tokens
+   -------------------------------------------------------------------------- */
+
+:root {
+  --wiiu-font: "WiiU Rounded", "Nunito", "Segoe UI", system-ui, sans-serif;
+
+  /* Palette */
+  --wiiu-accent: #00a2e8;
+  --wiiu-accent-deep: #0079c1;
+  --wiiu-accent-soft: #35c8f0;
+  --wiiu-ink: #3f4d5a;
+  --wiiu-ink-soft: rgba(63, 77, 90, 0.55);
+  --wiiu-paper: #ffffff;
+
+  /* Home background: soft paper blue with a faint channel grid */
+  --wiiu-bg:
+    radial-gradient(1200px 680px at 12% -10%, #ffffff 0%, rgba(255, 255, 255, 0) 62%),
+    radial-gradient(900px 520px at 105% 108%, rgba(53, 200, 240, 0.22) 0%, rgba(53, 200, 240, 0) 62%),
+    radial-gradient(700px 420px at 50% 115%, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0) 70%),
+    linear-gradient(180deg, #f3f8fb 0%, #e6eff5 52%, #d7e5ee 100%);
+
+  /* Top bar */
+  --wiiu-header-bg: rgba(255, 255, 255, 0.84);
+  --wiiu-header-ink: #3f4d5a;
+
+  /* Tabs */
+  --wiiu-tab-bg: rgba(255, 255, 255, 0.55);
+  --wiiu-tab-bg-selected: #ffffff;
+
+  /* Tiles */
+  --wiiu-tile-radius: 16px;
+  --wiiu-tile-frame: #ffffff;
+
+  /* Footer */
+  --wiiu-footer-height: 64px;
+  --wiiu-legend-pad: calc(6px + 1.4vw);
+  --wiiu-logo-text: "Wii U";
+  --wiiu-logo-display: block;
+
+  /* Decorative home watermark */
+  --wiiu-menu-title: "Wii U";
+  --wiiu-menu-title-display: block;
+
+  /* Keep Steam's own layout aware of the taller footer */
+  --gamepadui-current-footer-height: 64px !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. Typography
+   -------------------------------------------------------------------------- */
+
+html,
+body,
+.BasicUI,
+.BasicUI button,
+.BasicUI input,
+.BasicUI select,
+.BasicUI textarea {
+  font-family: var(--wiiu-font);
+}
+
+/* --------------------------------------------------------------------------
+   4. Home background
+   -------------------------------------------------------------------------- */
+
+.gamepadui_BasicHome_3LYP1,
+.gamepadui_BasicHome_3LYP1.gamepadui_OpaqueBackground_b084m,
+.gamepadhome_TabbedContent_cE1Sa {
+  background: var(--wiiu-bg) !important;
+}
+
+/* Faint grid of channel slots, like the Wii U home menu wallpaper */
+.gamepadhome_TabbedContent_cE1Sa {
+  position: relative;
+}
+
+.gamepadhome_TabbedContent_cE1Sa::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.4) 0 1px, transparent 1px 132px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.4) 0 1px, transparent 1px 132px);
+  -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.65), transparent 78%);
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.65), transparent 78%);
+}
+
+/* The game hero art belongs to Steam's dark look; hide it for the paper-blue menu */
+.gamepadhomerecentgames_RecentGamesBackground_1SRox,
+.RecentGamesBackgroundContainer,
+.RecentGamesBackgroundImages {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.gamepadhomerecentgames_RecentGamesBackgroundFadeGradient_1ksIq {
+  background: none !important;
+}
+
+/* Steam's own "Recent Games" caption is replaced by the watermark below */
+.gamepadhomerecentgames_RecentGamesHeader_35iRe {
+  display: none !important;
+}
+
+/* Decorative watermark in the empty upper half of the home screen */
+.gamepadhomerecentgames_RecentGamesContainer_2_cRk::before {
+  content: var(--wiiu-menu-title);
+  display: var(--wiiu-menu-title-display);
+  position: absolute;
+  top: 18px;
+  left: 2.8vw;
+  z-index: 0;
+  pointer-events: none;
+  font-family: var(--wiiu-font);
+  font-weight: 800;
+  font-size: clamp(22px, 2.4vw, 34px);
+  letter-spacing: 0.04em;
+  color: rgba(63, 77, 90, 0.18);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+  text-transform: none;
+}
+
+/* --------------------------------------------------------------------------
+   5. Top bar
+   -------------------------------------------------------------------------- */
+
+.header_Header_1E_SL:not(.header_InQuickAccess_2mRo5) {
+  background: var(--wiiu-header-bg) !important;
+  border-bottom: 1px solid rgba(53, 200, 240, 0.55) !important;
+  box-shadow:
+    0 6px 22px rgba(70, 110, 140, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(1.35);
+  backdrop-filter: blur(18px) saturate(1.35);
+}
+
+/* Steam paints its dark header tint with a pseudo element */
+.header_Header_1E_SL:not(.header_InQuickAccess_2mRo5)::before {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.06)) !important;
+  opacity: 1 !important;
+}
+
+.header_Header_1E_SL:not(.header_InQuickAccess_2mRo5),
+.header_Header_1E_SL:not(.header_InQuickAccess_2mRo5) * {
+  color: var(--wiiu-header-ink) !important;
+}
+
+/* Home tabs: rounded paper tabs with a cyan underline */
+.gamepadtabbedpage_Tab_3eEbS {
+  background: var(--wiiu-tab-bg) !important;
+  border-radius: 12px 12px 0 0 !important;
+  color: var(--wiiu-ink) !important;
+  font-family: var(--wiiu-font) !important;
+  font-weight: 700 !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.gamepadtabbedpage_Tab_3eEbS.gamepadtabbedpage_Selected_3Gp1b {
+  background: var(--wiiu-tab-bg-selected) !important;
+  color: var(--wiiu-accent-deep) !important;
+  box-shadow:
+    inset 0 -3px 0 var(--wiiu-accent),
+    0 6px 16px rgba(70, 110, 140, 0.16);
+}
+
+.gamepadtabbedpage_Tab_3eEbS.gpfocus {
+  background: rgba(255, 255, 255, 0.95) !important;
+  box-shadow:
+    inset 0 -3px 0 var(--wiiu-accent),
+    0 0 0 2px var(--wiiu-accent-soft),
+    0 8px 18px rgba(70, 110, 140, 0.2);
+}
+
+/* --------------------------------------------------------------------------
+   6. Game tiles
+   -------------------------------------------------------------------------- */
+
+/* White glossy channel frame around each recent game */
+.gamepadhomerecentgames_RecentGamesInnerContainer_282X0 .LibraryItemBox {
+  border: 4px solid var(--wiiu-tile-frame) !important;
+  border-radius: var(--wiiu-tile-radius) !important;
+  background: linear-gradient(165deg, #ffffff 0%, #eaf2f7 100%) !important;
+  box-shadow:
+    0 10px 22px rgba(70, 110, 140, 0.2),
+    0 2px 4px rgba(70, 110, 140, 0.12),
+    inset 0 1px 0 #ffffff,
+    inset 0 -1px 0 rgba(160, 185, 200, 0.3) !important;
+  overflow: hidden;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.gamepadhomerecentgames_RecentGamesInnerContainer_282X0 .libraryassetimage_GreyBackground_2E7G8 {
+  background: #dfeaf1 !important;
+  border-radius: calc(var(--wiiu-tile-radius) - 5px) !important;
+  overflow: hidden;
+}
+
+.gamepadhomerecentgames_RecentGamesInnerContainer_282X0 img.libraryassetimage_Image_24_Au {
+  border-radius: calc(var(--wiiu-tile-radius) - 5px) !important;
+  object-fit: cover;
+}
+
+/* Selected channel: lifted, white frame + cyan halo */
+.gamepadhomerecentgames_RecentGamesInnerContainer_282X0 .LibraryItemBox.gpfocus,
+.gamepadhomerecentgames_RecentGamesInnerContainer_282X0 .LibraryItemBox:focus,
+.gamepadhomerecentgames_RecentGamesInnerContainer_282X0 .gpfocus .LibraryItemBox {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow:
+    0 0 0 3px var(--wiiu-accent),
+    0 0 0 9px rgba(53, 200, 240, 0.24),
+    0 16px 32px rgba(70, 110, 140, 0.28),
+    inset 0 1px 0 #ffffff !important;
+  outline: none !important;
+}
+
+/* Steam's default focus glow, toned down to a soft cyan bloom */
+.gamepadhomerecentgames_RecentGamesInnerContainer_282X0 .basicgamecarousel_CarouselCapsuleBackgroundGlow_1H3Kf {
+  opacity: 0.35 !important;
+  filter: blur(16px) saturate(1.2);
+}
+
+/* Game title above the focused channel becomes a paper pill */
+.basicgamecarousel_CarouselGameLabelWrapper_ZkD6W {
+  height: 42px !important;
+  padding: 0 14px !important;
+  border: 1px solid rgba(210, 228, 238, 0.95) !important;
+  border-radius: 12px !important;
+  background: rgba(255, 255, 255, 0.94) !important;
+  box-shadow:
+    0 6px 16px rgba(70, 110, 140, 0.16),
+    inset 0 1px 0 #ffffff;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.basicgamecarousel_CarouselGameLabelWrapper_ZkD6W *,
+.basicgamecarousel_CarouselGameLabelWrapper_ZkD6W {
+  color: var(--wiiu-ink) !important;
+  font-family: var(--wiiu-font) !important;
+}
+
+/* Give the carousel a little breathing room above the taller footer */
+.gamepadhomerecentgames_RecentGamesContainer_2_cRk {
+  padding-bottom: calc(var(--wiiu-footer-height) + 12px) !important;
+}
+
+.basicgamecarousel_BasicGameCarousel_3MdH5 {
+  margin-bottom: 24px !important;
+}
+
+/* --------------------------------------------------------------------------
+   7. Footer with the signature Wii U wave
+   -------------------------------------------------------------------------- */
+
+.footer_BasicFooter_3T1iF {
+  height: var(--wiiu-footer-height) !important;
+  min-height: var(--wiiu-footer-height) !important;
+  background: linear-gradient(180deg, #ffffff 0%, #f2f8fb 100%) !important;
+  border: 0 !important;
+  border-image: none !important;
+  box-shadow:
+    0 -12px 32px rgba(70, 110, 140, 0.18),
+    inset 0 2px 0 var(--wiiu-accent-soft) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  font-family: var(--wiiu-font) !important;
+  overflow: visible !important;
+}
+
+/* Little Wii U badge, centred in the free space of the footer */
+.footer_BasicFooter_3T1iF::after {
+  content: var(--wiiu-logo-text);
+  display: var(--wiiu-logo-display);
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  transform: translate(-50%, 50%);
+  padding: 2px 11px 3px;
+  border: 2px solid rgba(210, 226, 236, 0.95);
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow:
+    0 3px 8px rgba(70, 110, 140, 0.16),
+    inset 0 1px 0 #ffffff;
+  color: #8a97a1 !important;
+  font-family: var(--wiiu-font) !important;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 24px;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.footer_BasicFooter_3T1iF,
+.footer_BasicFooter_3T1iF * {
+  color: var(--wiiu-ink) !important;
+}
+
+.footer_FooterLegend_2JJDH {
+  padding-left: var(--wiiu-legend-pad) !important;
+  padding-right: 1.4vw !important;
+  font-family: var(--wiiu-font) !important;
+}
+
+.footericons_SizeMedium_3-w0R {
+  color: var(--wiiu-ink) !important;
+  font-weight: 700 !important;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.9;
+}
+
+.actionbuttonlegenditem_ActionButtonLegend_Mbyhb {
+  border-radius: 10px !important;
+  transition: background-color 0.15s ease;
+}
+
+.actionbuttonlegenditem_ActionButtonLegend_Mbyhb:hover {
+  background-color: rgba(0, 162, 232, 0.1) !important;
+}
+
+.actionbuttonlegenditem_ActionButtonLabel_31Jnn {
+  font-family: var(--wiiu-font) !important;
+  font-weight: 700 !important;
+}
+
+/* --------------------------------------------------------------------------
+   8. Small quality-of-life touches
+   -------------------------------------------------------------------------- */
+
+/* Paper-like scrollbars */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 162, 232, 0.35);
+  border: 2px solid transparent;
+  border-radius: 10px;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 162, 232, 0.55);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}

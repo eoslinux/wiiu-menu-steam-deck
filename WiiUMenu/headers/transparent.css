@@ -1,0 +1,16 @@
+/* Barely-there top bar, useful when the game art background is enabled */
+:root {
+  --wiiu-header-bg: transparent;
+  --wiiu-header-ink: #3f4d5a;
+}
+
+.header_Header_1E_SL:not(.header_InQuickAccess_2mRo5) {
+  border-bottom-color: transparent !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+.header_Header_1E_SL:not(.header_InQuickAccess_2mRo5)::before {
+  background: none !important;
+}

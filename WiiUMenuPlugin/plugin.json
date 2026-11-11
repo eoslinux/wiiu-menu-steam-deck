@@ -1,0 +1,12 @@
+{
+  "name": "Wii U Menu",
+  "author": "Arseniy",
+  "flags": [],
+  "api_version": 1,
+  "publish": {
+    "tags": ["style", "home", "nintendo", "wiiu"],
+    "description": "A full-screen Wii U inspired home menu with channel tiles, live clock, paging and original menu sounds.",
+    "image": "https://raw.githubusercontent.com/SteamDeckHomebrew/PluginLoader/main/assets/decky.png"
+  },
+  "version": "1.0.0"
+}

@@ -1,0 +1,10 @@
+/* Flat white footer without the wave */
+:root {
+  --wiiu-wave-display: none;
+}
+
+.footer_BasicFooter_3T1iF {
+  box-shadow:
+    0 -8px 24px rgba(70, 110, 140, 0.16),
+    inset 0 3px 0 var(--wiiu-accent-soft) !important;
+}

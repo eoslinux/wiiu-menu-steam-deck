@@ -1,0 +1,8 @@
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+dist/index.js.map
+*.zip
+.DS_Store
+Thumbs.db
